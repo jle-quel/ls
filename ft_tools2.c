@@ -6,11 +6,25 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 18:22:20 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:50:09 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	ft_treeclr(t_tree *node)
+{
+	CHK_CV(node);
+	ft_treeclr(node->left);
+	ft_treeclr(node->right);
+	free(node->name);
+	if (node->path)
+		free(node->path);
+	node->name = NULL;
+	node->path = NULL;
+	free(node);
+	node = NULL;
+}
 
 char	*ft_path(char *directory, char *name)
 {

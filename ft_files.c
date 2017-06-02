@@ -6,18 +6,11 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 18:41:15 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:42:30 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void	ft_error(t_ret *ret, char *str)
-{
-	ft_putstr("./ft_ls: ");
-	perror(str);
-	ret->error = errno;
-}
 
 t_tree	*ft_F1(char **argv, t_ret *ret, t_tree *node)
 {

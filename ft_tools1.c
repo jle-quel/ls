@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 16:28:26 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:42:36 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,11 @@ size_t	ft_index(char **argv)
 	while (argv[index] && *argv[index] == '-')
 		index++;
 	return (index);
+}
+
+void	ft_error(t_ret *ret, char *str)
+{
+	ft_putstr("./ft_ls: ");
+	perror(str);
+	ret->error = errno;
 }
