@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 13:49:24 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:28:26 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t	ft_index(char **argv)
 	size_t	index;
 
 	index = 0;
-	while (argv[index] && !ft_isalpha(argv[index][0]))
+	while (argv[index] && *argv[index] == '-')
 		index++;
 	return (index);
 }

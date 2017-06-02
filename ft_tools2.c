@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 15:22:19 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:24:22 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,4 @@ char	*ft_path(char *directory, char *var)
 	ft_strcat(path, "/");
 	ft_strcat(path, var);
 	return (path);
-}
-
-t_ret		*ft_return(void)
-{
-	t_ret	*ret;
-
-	CHK_CC((ret = (t_ret*)malloc(sizeof(t_ret))));
-	ret->error = 0;
-	return (ret);
 }
