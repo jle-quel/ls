@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tools1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 10:57:15 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 14:51:42 by jle-quel         ###   ########.fr       */
+/*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
+/*   Updated: 2017/06/02 13:49:24 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
+int		ft_lstsearch(t_list *options, char c)
 {
 	size_t	index;
-	t_list	*options;
+	t_list	*temp;
 
-	if (argc == 1)
-		return (-1);
-	index = ft_index(argv + 1) + 1;
-	options = ft_options(argv + 1);
+	temp = options;
+	while (temp)
+	{
+		index = 0;
+		while (temp->content[index])
+		{
+			if (temp->content[index] == c)
+				return (1);
+			index++;
+		}
+		temp = temp->next;
+	}
 	return (0);
+}
+
+size_t	ft_index(char **argv)
+{
+	size_t	index;
+
+	index = 0;
+	while (argv[index] && !ft_isalpha(argv[index][0]))
+		index++;
+	return (index);
 }
