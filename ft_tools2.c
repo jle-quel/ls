@@ -6,34 +6,28 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 14:44:34 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 15:22:19 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_info		*ft_infonew(char *name, char *path, time_t sec, long nsec)
+char	*ft_path(char *directory, char *var)
 {
-	t_info	*var;
+	char	*path;
 
-	CHK_CC((var = (t_info*)malloc(sizeof(t_info))));
-	CHK_CC((var->name = ft_strdup(name)));
-	CHK_CC((var->path = ft_strdup(path)));
-	var->sec = sec;
-	var->nsec = nsec;
-	return (var);
+	path = ft_memalloc(ft_strlen(directory) + 1 + ft_strlen(var) + 1);
+	ft_strcpy(path, directory);
+	ft_strcat(path, "/");
+	ft_strcat(path, var);
+	return (path);
 }
 
-t_tree		*ft_treenew(t_info *var)
+t_ret		*ft_return(void)
 {
-	t_tree	*node;
+	t_ret	*ret;
 
-	CHK_CC((node = (t_tree*)malloc(sizeof(t_tree))));
-	CHK_CC((node->name = ft_strsub(var->name, 0, ft_strlen(var->name))));
-	CHK_CC((node->path = ft_strsub(var->path, 0, ft_strlen(var->name))));
-	node->sec = var->sec;
-	node->nsec = var->nsec;
-	node->left = NULL;
-	node->right = NULL;
-	return (node);
+	CHK_CC((ret = (t_ret*)malloc(sizeof(t_ret))));
+	ret->error = 0;
+	return (ret);
 }
