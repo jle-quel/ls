@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 14:46:08 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:52:43 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void		ft_parsing(char *str)
 	index = 0;
 	while (str[index])
 	{
-		if (str[index] != 'R' && str[index] != 'r' && str[index] != 'a' && str[index] != 'l' && str[index] != '-' && str[index] != 't')
+		if (str[index] != 'R' && str[index] != 'r' && str[index] != 'a' &&
+			str[index] != 'l' && str[index] != '-' && str[index] != 't')
 		{
 			ft_printERROR(str[index]);
 			exit (1);
