@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 16:27:30 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:17:31 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_tree	*ft_files(char **argv, t_list *options, t_ret *ret)
 	size_t			index;
 	DIR				*dirp;
 	t_tree			*node;
+	t_info			*var;
 	struct stat		buf;
 
 	index = ft_index(argv);
@@ -33,9 +34,15 @@ t_tree	*ft_files(char **argv, t_list *options, t_ret *ret)
 		if (lstat(argv[index], &buf) == 0)
 		{
 			if (!(dirp = opendir(argv[index])))
-				ft_putendl(argv[index]);
+			{
+				var = ft_infonew(buf, argv[index], NULL);
+				node = ft_treenew(var);
+				free(var);
+				break ;
+			}
 			else
 				closedir(dirp);
+			ft_putendl("\n");
 		}
 		else
 			ft_error(ret);

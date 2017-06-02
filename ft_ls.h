@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 16:24:41 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:46:17 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ size_t			ft_index(char **argv);
 /*
 ** FT_TOOLS2.C
 */
-char	*ft_path(char *directory, char *var);
+char			*ft_path(char *directory, char *var);
+t_tree			*ft_treeinsertAS(t_tree *node, t_info *var);
+t_info			*ft_infonew(struct stat buf, char *name, char *directory);
 
 #endif
