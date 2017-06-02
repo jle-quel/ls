@@ -6,47 +6,50 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 17:17:31 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:41:15 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_error(t_ret *ret)
+void	ft_error(t_ret *ret, char *str)
 {
-	perror("./ft_ls");
+	ft_putstr("./ft_ls: ");
+	perror(str);
 	ret->error = errno;
 }
 
-t_tree	*ft_files(char **argv, t_list *options, t_ret *ret)
+t_tree	*ft_F1(char **argv, t_ret *ret, t_tree *node)
 {
-	(void)options;
 	size_t			index;
 	DIR				*dirp;
-	t_tree			*node;
-	t_info			*var;
+	t_info			var;
 	struct stat		buf;
 
 	index = ft_index(argv);
-	node = NULL;
 	while (argv[index])
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
 			if (!(dirp = opendir(argv[index])))
 			{
-				var = ft_infonew(buf, argv[index], NULL);
-				node = ft_treenew(var);
-				free(var);
-				break ;
+				ft_info(&var, argv[index], NULL);
+				node == NULL
+				? node = ft_treeinsertAS(node, var, SEC, NSEC)
+				: ft_treeinsertAS(node, var, SEC, NSEC);
 			}
 			else
 				closedir(dirp);
-			ft_putendl("\n");
 		}
 		else
-			ft_error(ret);
+			ft_error(ret, argv[index]);
 		index++;
 	}
 	return (node);
+}
+
+t_tree	*ft_files(char **argv, t_list *options, t_ret *ret, t_tree *node)
+{
+	(void)options;
+	return (ft_F1(argv, ret, node));
 }

@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 16:46:17 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:35:33 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # include <errno.h>
 # include <sys/xattr.h>
 
+# define SEC buf.st_mtimespec.tv_sec
+# define NSEC buf.st_mtimespec.tv_nsec
+
 typedef struct		s_tree
 {
 	char			*name;
@@ -41,8 +44,6 @@ typedef struct		s_info
 {
 	char			*name;
 	char			*path;
-	time_t			sec;
-	long			nsec;
 }					t_info;
 
 typedef struct		s_ret
@@ -58,7 +59,7 @@ t_list			*ft_options(char **argv);
 /*
 ** FT_FILES.C
 */
-t_tree			*ft_files(char **argv, t_list *options, t_ret *ret);
+t_tree			*ft_files(char **argv, t_list *options, t_ret *ret, t_tree *node);
 
 /*
 ** FT_TOOLS1.C
@@ -70,7 +71,18 @@ size_t			ft_index(char **argv);
 ** FT_TOOLS2.C
 */
 char			*ft_path(char *directory, char *var);
-t_tree			*ft_treeinsertAS(t_tree *node, t_info *var);
-t_info			*ft_infonew(struct stat buf, char *name, char *directory);
+void			ft_info(t_info *var, char *name, char *directory);
+t_tree			*ft_treeinsertAS(t_tree *node, t_info var, time_t sec, long nsec);
+
+/*
+** FT_PRINT.C
+*/
+void 			ft_printfiles_order(t_tree *files, int flag);
+void 			ft_printfiles_inorder(t_tree *files, int flag);
+
+/*
+** FT_PRINTLONG.C
+*/
+void			ft_printlong(char *str, char *path);
 
 #endif
