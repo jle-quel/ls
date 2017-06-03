@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 12:11:09 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 14:11:30 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ typedef struct		s_ret
 /*
 ** INITIALIZE TREES (MAIN)
 */
-t_list			*ft_options(char **argv);
-t_tree			*ft_files(char **argv, t_list *options, t_ret *ret, t_tree *node);
-t_tree			*ft_directories(char **argv, t_list *options, t_tree *node);
+t_tree			*ft_options(char **argv, t_tree *node);
+t_tree			*ft_files(char **argv, t_tree *options, t_ret *ret, t_tree *node);
+t_tree			*ft_directories(char **argv, t_tree *options, t_tree *node);
 
 /*
 ** TOOLS
 */
 int				ft_lstsearch(t_list *options, char c);
+int				ft_treesearch(t_tree *options, char c);
 size_t			ft_index(char **argv);
 void			ft_error(t_ret *ret, char *str);
 char			*ft_path(char *directory, char *var);
@@ -75,7 +76,7 @@ t_tree			*ft_treeinsertTI(t_tree *node, t_info var, time_t sec, long nsec);
 */
 void 			ft_printOR(t_tree *files, int flag);
 void 			ft_printIN(t_tree *files, int flag);
-void 			ft_printfiles(t_tree *files, t_list *options);
+void 			ft_printfiles(t_tree *files, t_tree *options);
 void			ft_printlong(char *str, char *path);
 
 #endif

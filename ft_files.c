@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 13:31:02 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 14:11:05 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,17 @@ static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 	return (node);
 }
 
-t_tree			*ft_files(char **argv, t_list *options, t_ret *ret, t_tree *node)
+t_tree			*ft_files(char **argv, t_tree *options, t_ret *ret, t_tree *node)
 {
-	if (ft_lstsearch(options, 't'))
+	if (ft_treesearch(options, 't'))
 	{
-		return ft_lstsearch(options, 'l')
+		return ft_treesearch(options, 'l')
 		? ft_filesTI_SPEC(argv, ret, node)
 		: ft_filesTI(argv, ret, node);
 	}
 	else
 	{
-		return ft_lstsearch(options, 'l')
+		return ft_treesearch(options, 'l')
 		? ft_filesAS_SPEC(argv, ret, node)
 		: ft_filesAS(argv, ret, node);
 	}
