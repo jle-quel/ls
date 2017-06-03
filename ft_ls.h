@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 18:50:21 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 09:39:11 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,15 @@ t_tree			*ft_files(char **argv, t_list *options, t_ret *ret, t_tree *node);
 int				ft_lstsearch(t_list *options, char c);
 size_t			ft_index(char **argv);
 void			ft_error(t_ret *ret, char *str);
+char			*ft_path(char *directory, char *var);
 
 /*
 ** FT_TOOLS2.C
 */
 void			ft_treeclr(t_tree *node);
-char			*ft_path(char *directory, char *var);
 void			ft_info(t_info *var, char *name, char *directory);
 t_tree			*ft_treeinsertAS(t_tree *node, t_info var, time_t sec, long nsec);
+t_tree			*ft_treeinsertTI(t_tree *node, t_info var, time_t sec, long nsec);
 
 /*
 ** FT_PRINT.C

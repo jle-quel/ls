@@ -6,11 +6,22 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 18:42:36 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 09:37:42 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*ft_path(char *directory, char *name)
+{
+	char	*path;
+
+	path = ft_memalloc(ft_strlen(directory) + 1 + ft_strlen(name) + 1);
+	ft_strcpy(path, directory);
+	ft_strcat(path, "/");
+	ft_strcat(path, name);
+	return (path);
+}
 
 int		ft_lstsearch(t_list *options, char c)
 {

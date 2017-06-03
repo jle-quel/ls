@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/02 18:50:09 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 11:35:31 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ void	ft_treeclr(t_tree *node)
 	node->path = NULL;
 	free(node);
 	node = NULL;
-}
-
-char	*ft_path(char *directory, char *name)
-{
-	char	*path;
-
-	path = ft_memalloc(ft_strlen(directory) + 1 + ft_strlen(name) + 1);
-	ft_strcpy(path, directory);
-	ft_strcat(path, "/");
-	ft_strcat(path, name);
-	return (path);
 }
 
 void	ft_info(t_info *var, char *name, char *directory)
@@ -71,5 +60,23 @@ t_tree		*ft_treeinsertAS(t_tree *node, t_info var, time_t sec, long nsec)
 		node->left = ft_treeinsertAS(node->left, var, sec, nsec);
 	else if (ft_strcmp(var.name, node->name) > 0)
 		node->right = ft_treeinsertAS(node->right, var, sec, nsec);
+	return (node);
+}
+
+t_tree		*ft_treeinsertTI(t_tree *node, t_info var, time_t sec, long nsec)
+{
+	if (node == NULL)
+		return (ft_treenew(var, sec, nsec));
+	else if (sec > node->sec)
+		node->left = ft_treeinsertTI(node->left, var, sec, nsec);
+	else if (sec < node->sec)
+		node->right = ft_treeinsertTI(node->right, var, sec, nsec);
+	else if (sec == node->sec)
+	{
+		if (nsec > node->nsec)
+			node->left = ft_treeinsertTI(node->left, var, sec, nsec);
+		else if (nsec <= node->nsec)
+			node->right = ft_treeinsertTI(node->right, var, sec, nsec);
+	}
 	return (node);
 }
