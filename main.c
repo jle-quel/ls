@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:15 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 14:10:56 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 15:52:07 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int		main(int argc, char **argv)
 
 	directories = ft_directories(argv + 1, options, node);
 	ft_treeclr(node);
-	ft_putendl("");
-	ft_printOR(directories, ft_treesearch(options, 'l'));
-
+	
 	return (ret.error);
 }
