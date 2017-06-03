@@ -6,11 +6,13 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:15 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 13:31:10 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/03 13:37:24 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+// CHANGE THE OPTIONS LIST TO TREE, ITS SORTED !!!!!
 
 int		main(int argc, char **argv)
 {
@@ -30,5 +32,6 @@ int		main(int argc, char **argv)
 	ft_treeclr(node);
 	directories = ft_directories(argv + 1, options, node);
 	ft_treeclr(node);
+
 	return (ret.error);
 }
