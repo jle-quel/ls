@@ -6,11 +6,19 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 13:52:37 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/05 12:09:24 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+size_t	ft_treelen(t_tree *directories)
+{
+	if (!directories)
+		return (0);
+	else
+		return(ft_treelen(directories->left) + 1 + ft_treelen(directories->right));
+}
 
 char	*ft_path(char *directory, char *name)
 {
