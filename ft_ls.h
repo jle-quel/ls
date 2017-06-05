@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/05 12:14:46 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/05 14:54:17 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define SEC buf.st_mtimespec.tv_sec
 # define NSEC buf.st_mtimespec.tv_nsec
-# define CHK_DIR(a) if (!a) { perror(directory); return ; }
+# define CHK_DIR(a) if (!a) { perror(ft_strjoin("./ft_ls: ", directory)); return ; }
 
 typedef struct		s_tree
 {
@@ -62,7 +62,8 @@ t_tree			*ft_directories(char **argv, t_tree *options, t_tree *node);
 /*
 ** TOOLS
 */
-size_t	ft_treelen(t_tree *directories);
+t_tree			*ft_treenew(t_info var, time_t sec, long nsec);
+size_t			ft_treelen(t_tree *directories);
 int				ft_lstsearch(t_list *options, char c);
 int				ft_treesearch(t_tree *options, char c);
 size_t			ft_index(char **argv);
@@ -86,13 +87,12 @@ void			ft_display(t_tree *options, t_tree *node, blkcnt_t blocks);
 ** READING
 */
 void			ft_read(t_tree *options, char *directory);
+void			ft_directions(t_tree *node, t_tree *options);
 
 /*
 ** LAUNCHER
 */
 void			ft_launcher1(t_tree *options, t_tree *directories, int display);
 void			ft_launcher2(t_tree *options, t_tree *directories, int display);
-void			ft_launcher3(t_tree *options, t_tree *directories, int display);
-void			ft_launcher4(t_tree *options, t_tree *directories, int display);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 15:50:03 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/05 13:58:37 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -24,15 +23,13 @@ static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if (!(dirp = opendir(argv[index])) || S_ISLNK(buf.st_mode))
+			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
 			}
-			else if (dirp)
-				closedir(dirp);
 		}
 		else
 			ft_error(ret, argv[index]);
@@ -44,7 +41,6 @@ static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -53,15 +49,13 @@ static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if (!(dirp = opendir(argv[index])))
+			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
 			}
-			else
-				closedir(dirp);
 		}
 		else
 			ft_error(ret, argv[index]);
@@ -73,7 +67,6 @@ static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -82,15 +75,13 @@ static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if (!(dirp = opendir(argv[index])) || S_ISLNK(buf.st_mode))
+			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
 			}
-			else if (dirp)
-				closedir(dirp);
 		}
 		else
 			ft_error(ret, argv[index]);
@@ -102,7 +93,6 @@ static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -111,15 +101,13 @@ static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if (!(dirp = opendir(argv[index])))
+			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
 			}
-			else
-				closedir(dirp);
 		}
 		else
 			ft_error(ret, argv[index]);

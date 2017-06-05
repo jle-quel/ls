@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:02:55 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/05 12:11:42 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/05 14:48:54 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,20 @@ static void		ft_output(char *str)
 	index++;
 }
 
-void			ft_launcher1(t_tree *options, t_tree *directories, int display);
-
-void			ft_launcher2(t_tree *options, t_tree *directories, int display);
-
-void			ft_launcher3(t_tree *options, t_tree *directories, int display)
+void			ft_launcher1(t_tree *options, t_tree *directories, int display)
 {
 	CHK_CV(directories);
-	ft_launcher3(options, directories->right, display);
+	ft_launcher1(options, directories->right, display);
 	display == 0 ? : ft_output(directories->name);
 	ft_read(options, directories->name);
-	ft_launcher3(options, directories->left, display);
+	ft_launcher1(options, directories->left, display);
 }
 
-void			ft_launcher4(t_tree *options, t_tree *directories, int display)
+void			ft_launcher2(t_tree *options, t_tree *directories, int display)
 {
 	CHK_CV(directories);
-	ft_launcher4(options, directories->left, display);
+	ft_launcher2(options, directories->left, display);
 	display == 0 ? : ft_output(directories->name);
 	ft_read(options, directories->name);
-	ft_launcher4(options, directories->right, display);
+	ft_launcher2(options, directories->right, display);
 }

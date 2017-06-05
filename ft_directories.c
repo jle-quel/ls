@@ -6,19 +6,15 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 11:45:48 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/03 15:50:33 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/05 13:52:18 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-// FOR THE REVERSE SORT WITH THE DIRECTORIES, WHEN YOU SEND THE DIRECTORIES
-// TO THE READ FUNCTION SEND IT BACKWARD
-
 t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -27,13 +23,12 @@ t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if ((dirp = opendir(argv[index])) && !S_ISLNK(buf.st_mode))
+			if (S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
-				closedir(dirp);
 			}
 		}
 		index++;
@@ -44,7 +39,6 @@ t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
 t_tree	*ft_directoriesTI(char **argv, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -53,13 +47,12 @@ t_tree	*ft_directoriesTI(char **argv, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if ((dirp = opendir(argv[index])))
+			if (S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
-				closedir(dirp);
 			}
 		}
 		index++;
@@ -70,7 +63,6 @@ t_tree	*ft_directoriesTI(char **argv, t_tree *node)
 t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -79,13 +71,12 @@ t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if ((dirp = opendir(argv[index])) && !S_ISLNK(buf.st_mode))
+			if (S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
-				closedir(dirp);
 			}
 		}
 		index++;
@@ -96,7 +87,6 @@ t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
 t_tree	*ft_directoriesAS(char **argv, t_tree *node)
 {
 	size_t			index;
-	DIR				*dirp;
 	t_info			var;
 	struct stat		buf;
 
@@ -105,13 +95,12 @@ t_tree	*ft_directoriesAS(char **argv, t_tree *node)
 	{
 		if (lstat(argv[index], &buf) == 0)
 		{
-			if ((dirp = opendir(argv[index])))
+			if (S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
 				ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
-				closedir(dirp);
 			}
 		}
 		index++;
