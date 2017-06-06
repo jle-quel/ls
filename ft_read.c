@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 19:14:30 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/06 20:58:46 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void 	ft_read3(t_tree *options, char *directory)
 
 void 	ft_read4(t_tree *options, char *directory)
 {
-	DIR				*dirp;                                                                   
+	DIR				*dirp;
 	t_tree			*node;
 	t_info			var;
 	blkcnt_t		blocks;
