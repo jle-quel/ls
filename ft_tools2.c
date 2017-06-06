@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/05 15:50:35 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:39:22 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_info(t_info *var, char *name, char *directory)
 		var->path = ft_path(directory, name);
 	else
 		var->path = NULL;
+
 }
 
 t_tree		*ft_treenew(t_info var, time_t sec, long nsec)

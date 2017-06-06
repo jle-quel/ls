@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/05 15:50:02 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/06 16:56:09 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				ft_info(&var, argv[index], NULL);
+				var.name = ft_strdup(argv[index]);
+				var.path = NULL;
+				// ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
@@ -51,7 +53,9 @@ static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				ft_info(&var, argv[index], NULL);
+				var.name = ft_strdup(argv[index]);
+				var.path = NULL;
+				// ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertTI(node, var, SEC, NSEC)
 				: ft_treeinsertTI(node, var, SEC, NSEC);
@@ -77,7 +81,9 @@ static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				ft_info(&var, argv[index], NULL);
+				var.name = ft_strdup(argv[index]);
+				var.path = NULL;
+				// ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
@@ -103,7 +109,9 @@ static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				ft_info(&var, argv[index], NULL);
+				var.name = ft_strdup(argv[index]);
+				var.path = NULL;
+				// ft_info(&var, argv[index], NULL);
 				node == NULL
 				? node = ft_treeinsertAS(node, var, SEC, NSEC)
 				: ft_treeinsertAS(node, var, SEC, NSEC);
