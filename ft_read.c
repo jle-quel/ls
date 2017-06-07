@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 15:01:51 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:20:03 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void 	ft_read1(t_tree *options, char *directory)
 {
-	DIR				*dirp;
 	t_tree			*node;
 	t_info			var;
-	blkcnt_t		blocks;
+	t_norm			norm;
 	struct dirent	*sd;
 	struct stat		buf;
 
 	node = NULL;
-	blocks = 0;
-	CHK_DIR((dirp = opendir(directory)))
-	while ((sd = readdir(dirp)))
+	norm.blocks = 0;
+	CHK_DIR((norm.dirp = opendir(directory)))
+	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
 		if (lstat(var.path, &buf) == 0)
@@ -32,28 +31,27 @@ void 	ft_read1(t_tree *options, char *directory)
 			node == NULL
 			? node = ft_treeinsert_ti(node, var, SEC, NSEC)
 			: ft_treeinsert_ti(node, var, SEC, NSEC);
-			blocks += buf.st_blocks;
+			norm.blocks += buf.st_blocks;
 		}
 	}
-	closedir(dirp);
+	closedir(norm.dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, blocks)
-	: ft_display(options, node, blocks);
+	? ft_handle_directions(node, options, norm.blocks)
+	: ft_display(options, node, norm.blocks);
 }
 
 void 	ft_read2(t_tree *options, char *directory)
 {
-	DIR				*dirp;
 	t_tree			*node;
 	t_info			var;
-	blkcnt_t		blocks;
+	t_norm			norm;
 	struct dirent	*sd;
 	struct stat		buf;
 
 	node = NULL;
-	blocks = 0;
-	CHK_DIR((dirp = opendir(directory)))
-	while ((sd = readdir(dirp)))
+	norm.blocks = 0;
+	CHK_DIR((norm.dirp = opendir(directory)))
+	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
 		if (lstat(var.path, &buf) == 0 && *sd->d_name != '.')
@@ -61,28 +59,27 @@ void 	ft_read2(t_tree *options, char *directory)
 			node == NULL
 			? node = ft_treeinsert_ti(node, var, SEC, NSEC)
 			: ft_treeinsert_ti(node, var, SEC, NSEC);
-			blocks += buf.st_blocks;
+			norm.blocks += buf.st_blocks;
 		}
 	}
-	closedir(dirp);
+	closedir(norm.dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, blocks)
-	: ft_display(options, node, blocks);
+	? ft_handle_directions(node, options, norm.blocks)
+	: ft_display(options, node, norm.blocks);
 }
 
 void 	ft_read3(t_tree *options, char *directory)
 {
-	DIR				*dirp;
 	t_tree			*node;
 	t_info			var;
-	blkcnt_t		blocks;
+	t_norm			norm;
 	struct dirent	*sd;
 	struct stat		buf;
 
 	node = NULL;
-	blocks = 0;
-	CHK_DIR((dirp = opendir(directory)))
-	while ((sd = readdir(dirp)))
+	norm.blocks = 0;
+	CHK_DIR((norm.dirp = opendir(directory)))
+	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
 		if (lstat(var.path, &buf) == 0)
@@ -90,28 +87,27 @@ void 	ft_read3(t_tree *options, char *directory)
 			node == NULL
 			? node = ft_treeinsert_as(node, var, SEC, NSEC)
 			: ft_treeinsert_as(node, var, SEC, NSEC);
-			blocks += buf.st_blocks;
+			norm.blocks += buf.st_blocks;
 		}
 	}
-	closedir(dirp);
+	closedir(norm.dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, blocks)
-	: ft_display(options, node, blocks);
+	? ft_handle_directions(node, options, norm.blocks)
+	: ft_display(options, node, norm.blocks);
 }
 
 void 	ft_read4(t_tree *options, char *directory)
 {
-	DIR				*dirp;
 	t_tree			*node;
 	t_info			var;
-	blkcnt_t		blocks;
+	t_norm			norm;
 	struct dirent	*sd;
 	struct stat		buf;
 
 	node = NULL;
-	blocks = 0;
-	CHK_DIR((dirp = opendir(directory)))
-	while ((sd = readdir(dirp)))
+	norm.blocks = 0;
+	CHK_DIR((norm.dirp = opendir(directory)))
+	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
 		if (lstat(var.path, &buf) == 0 && *sd->d_name != '.')
@@ -119,13 +115,13 @@ void 	ft_read4(t_tree *options, char *directory)
 			node == NULL
 			? node = ft_treeinsert_as(node, var, SEC, NSEC)
 			: ft_treeinsert_as(node, var, SEC, NSEC);
-			blocks += buf.st_blocks;
+			norm.blocks += buf.st_blocks;
 		}
 	}
-	closedir(dirp);
+	closedir(norm.dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, blocks)
-	: ft_display(options, node, blocks);
+	? ft_handle_directions(node, options, norm.blocks)
+	: ft_display(options, node, norm.blocks);
 }
 
 void	ft_read(t_tree *options, char *directory)

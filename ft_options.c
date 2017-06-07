@@ -6,20 +6,20 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 15:08:23 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:25:59 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_error(t_ret *ret, char *str)
+void			ft_error(t_ret *ret, char *str)
 {
 	ft_putstr("./ft_ls: ");
 	perror(str);
 	ret->error = errno;
 }
 
-static void		ft_printERROR(char c)
+static void		ft_print_error(char c)
 {
 	ft_putstr("./ft_ls: illegal option -- ");
 	ft_putchar(c);
@@ -37,14 +37,14 @@ static void		ft_parsing(char *str)
 		if (str[index] != 'R' && str[index] != 'r' && str[index] != 'a' &&
 			str[index] != 'l' && str[index] != 't')
 		{
-			ft_printERROR(str[index]);
-			exit (1);
+			ft_print_error(str[index]);
+			exit(1);
 		}
 		index++;
 	}
 }
 
-t_tree				*ft_options(char **argv, t_tree *node)
+t_tree			*ft_options(char **argv, t_tree *node)
 {
 	size_t	index;
 	t_info	var;
