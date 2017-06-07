@@ -6,13 +6,13 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 11:45:48 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 16:57:56 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:10:32 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
+t_tree	*ft_directories_tispec(char **argv, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -25,12 +25,10 @@ t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
 		{
 			if (S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertTI(node, var, SEC, NSEC)
-				: ft_treeinsertTI(node, var, SEC, NSEC);
+				? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+				: ft_treeinsert_ti(node, var, SEC, NSEC);
 			}
 		}
 		index++;
@@ -38,7 +36,7 @@ t_tree	*ft_directoriesTI_SPEC(char **argv, t_tree *node)
 	return (node);
 }
 
-t_tree	*ft_directoriesTI(char **argv, t_tree *node)
+t_tree	*ft_directories_ti(char **argv, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -51,12 +49,10 @@ t_tree	*ft_directoriesTI(char **argv, t_tree *node)
 		{
 			if (S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertTI(node, var, SEC, NSEC)
-				: ft_treeinsertTI(node, var, SEC, NSEC);
+				? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+				: ft_treeinsert_ti(node, var, SEC, NSEC);
 			}
 		}
 		index++;
@@ -64,7 +60,7 @@ t_tree	*ft_directoriesTI(char **argv, t_tree *node)
 	return (node);
 }
 
-t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
+t_tree	*ft_directories_asspec(char **argv, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -77,12 +73,10 @@ t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
 		{
 			if (S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertAS(node, var, SEC, NSEC)
-				: ft_treeinsertAS(node, var, SEC, NSEC);
+				? node = ft_treeinsert_as(node, var, SEC, NSEC)
+				: ft_treeinsert_as(node, var, SEC, NSEC);
 			}
 		}
 		index++;
@@ -90,7 +84,7 @@ t_tree	*ft_directoriesAS_SPEC(char **argv, t_tree *node)
 	return (node);
 }
 
-t_tree	*ft_directoriesAS(char **argv, t_tree *node)
+t_tree	*ft_directories_as(char **argv, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -103,12 +97,10 @@ t_tree	*ft_directoriesAS(char **argv, t_tree *node)
 		{
 			if (S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertAS(node, var, SEC, NSEC)
-				: ft_treeinsertAS(node, var, SEC, NSEC);
+				? node = ft_treeinsert_as(node, var, SEC, NSEC)
+				: ft_treeinsert_as(node, var, SEC, NSEC);
 			}
 		}
 		index++;
@@ -120,14 +112,14 @@ t_tree	*ft_directories(char **argv, t_tree *options, t_tree *node)
 {
 	if (ft_treesearch(options, 't') == 1)
 	{
-		return ft_treesearch(options, 'l') == 1
-		? ft_directoriesTI_SPEC(argv, node)
-		: ft_directoriesTI(argv, node);
+		return (ft_treesearch(options, 'l') == 1)
+		? ft_directories_tispec(argv, node)
+		: ft_directories_ti(argv, node);
 	}
 	else
 	{
-		return ft_treesearch(options, 'l') == 1
-		? ft_directoriesAS_SPEC(argv, node)
-		: ft_directoriesAS(argv, node);
+		return (ft_treesearch(options, 'l') == 1)
+		? ft_directories_asspec(argv, node)
+		: ft_directories_as(argv, node);
 	}
 }

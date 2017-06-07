@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 18:28:23 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 20:49:49 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 14:16:44 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ void 	ft_printOR(t_tree *files, int flag)
 	}
 }
 
-void 	ft_printfiles(t_tree *files, t_tree *options)
+void 	ft_printfiles(t_tree *files, t_tree *options, t_tree *directories)
 {
 	ft_treesearch(options, 'r') == 1
 	? ft_printIN(files, ft_treesearch(options, 'l'))
 	: ft_printOR(files, ft_treesearch(options, 'l'));
+	!directories ? : ft_putendl("");
 }
 
 void	ft_display(t_tree *options, t_tree *node, blkcnt_t blocks)

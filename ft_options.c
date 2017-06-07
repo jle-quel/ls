@@ -6,11 +6,18 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 13:04:12 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:08:23 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	ft_error(t_ret *ret, char *str)
+{
+	ft_putstr("./ft_ls: ");
+	perror(str);
+	ret->error = errno;
+}
 
 static void		ft_printERROR(char c)
 {
@@ -48,8 +55,8 @@ t_tree				*ft_options(char **argv, t_tree *node)
 		ft_parsing(argv[index] + 1);
 		ft_info(&var, argv[index], NULL);
 		node == NULL
-		? node = ft_treeinsertTI(node, var, 0, 0)
-		: ft_treeinsertTI(node, var, 0, 0);
+		? node = ft_treeinsert_as(node, var, 0, 0)
+		: ft_treeinsert_as(node, var, 0, 0);
 		argv++;
 	}
 	return (node);

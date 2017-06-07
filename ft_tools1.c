@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 13:26:26 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:08:56 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ size_t	ft_treelen(t_tree *directories)
 	if (!directories)
 		return (0);
 	else
-		return(ft_treelen(directories->left) + 1 + ft_treelen(directories->right));
+		return (ft_treelen(directories->left) + 1 +
+		ft_treelen(directories->right));
 }
 
 char	*ft_path(char *directory, char *name)
@@ -82,11 +83,4 @@ size_t	ft_index(char **argv)
 		index++;
 	}
 	return (index);
-}
-
-void	ft_error(t_ret *ret, char *str)
-{
-	ft_putstr("./ft_ls: ");
-	perror(str);
-	ret->error = errno;
 }

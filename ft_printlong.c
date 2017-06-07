@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 18:29:48 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 22:16:15 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 13:34:06 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,23 @@ static void 	ft_inspect_rights(mode_t nb)
 	!S_ISFIFO(nb) ? : ft_putchar('p');
 	nb & S_IRUSR ? ft_putchar('r') : ft_putchar('-');
 	nb & S_IWUSR ? ft_putchar('w') : ft_putchar('-');
-	nb & S_IXUSR ? ft_putchar('x') : ft_putchar('-');
+	if (nb & S_ISUID)
+		nb & S_IXUSR ? ft_putchar('s') : ft_putchar('S');
+	else
+		nb & S_IXUSR ? ft_putchar('x') : ft_putchar('-');
+
 	nb & S_IRGRP ? ft_putchar('r') : ft_putchar('-');
 	nb & S_IWGRP ? ft_putchar('w') : ft_putchar('-');
-	nb & S_IXGRP ? ft_putchar('x') : ft_putchar('-');
+	if (nb & S_ISGID)
+		nb & S_IXGRP ? ft_putchar('s') : ft_putchar('S');
+	else
+		nb & S_IXGRP ? ft_putchar('x') : ft_putchar('-');
 	nb & S_IROTH ? ft_putchar('r') : ft_putchar('-');
 	nb & S_IWOTH ? ft_putchar('w') : ft_putchar('-');
-	nb & S_IXOTH ? ft_putchar('x') : ft_putchar('-');
+	if (nb & S_ISVTX)
+		nb & S_IXOTH ? ft_putchar('t') : ft_putchar('T');
+	else
+		nb & S_IXOTH ? ft_putchar('x') : ft_putchar('-');
 }
 
 static void 	ft_printtime(char *str)

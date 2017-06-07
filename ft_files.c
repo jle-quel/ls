@@ -6,13 +6,13 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:55:18 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 16:56:09 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:07:13 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
+static t_tree	*ft_files_tispec(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -25,12 +25,10 @@ static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertTI(node, var, SEC, NSEC)
-				: ft_treeinsertTI(node, var, SEC, NSEC);
+				? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+				: ft_treeinsert_ti(node, var, SEC, NSEC);
 			}
 		}
 		else
@@ -40,7 +38,7 @@ static t_tree	*ft_filesTI_SPEC(char **argv, t_ret *ret, t_tree *node)
 	return (node);
 }
 
-static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
+static t_tree	*ft_files_ti(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -53,12 +51,10 @@ static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertTI(node, var, SEC, NSEC)
-				: ft_treeinsertTI(node, var, SEC, NSEC);
+				? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+				: ft_treeinsert_ti(node, var, SEC, NSEC);
 			}
 		}
 		else
@@ -68,7 +64,7 @@ static t_tree	*ft_filesTI(char **argv, t_ret *ret, t_tree *node)
 	return (node);
 }
 
-static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
+static t_tree	*ft_files_asspec(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -81,12 +77,10 @@ static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) || S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertAS(node, var, SEC, NSEC)
-				: ft_treeinsertAS(node, var, SEC, NSEC);
+				? node = ft_treeinsert_as(node, var, SEC, NSEC)
+				: ft_treeinsert_as(node, var, SEC, NSEC);
 			}
 		}
 		else
@@ -96,7 +90,7 @@ static t_tree	*ft_filesAS_SPEC(char **argv, t_ret *ret, t_tree *node)
 	return (node);
 }
 
-static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
+static t_tree	*ft_files_as(char **argv, t_ret *ret, t_tree *node)
 {
 	size_t			index;
 	t_info			var;
@@ -109,12 +103,10 @@ static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 		{
 			if (!S_ISDIR(buf.st_mode) && !S_ISLNK(buf.st_mode))
 			{
-				var.name = ft_strdup(argv[index]);
-				var.path = NULL;
-				// ft_info(&var, argv[index], NULL);
+				ft_info(&var, argv[index], NULL);
 				node == NULL
-				? node = ft_treeinsertAS(node, var, SEC, NSEC)
-				: ft_treeinsertAS(node, var, SEC, NSEC);
+				? node = ft_treeinsert_as(node, var, SEC, NSEC)
+				: ft_treeinsert_as(node, var, SEC, NSEC);
 			}
 		}
 		else
@@ -124,18 +116,18 @@ static t_tree	*ft_filesAS(char **argv, t_ret *ret, t_tree *node)
 	return (node);
 }
 
-t_tree			*ft_files(char **argv, t_tree *options, t_ret *ret, t_tree *node)
+t_tree			*ft_files(char **argv, t_tree *option, t_ret *ret, t_tree *node)
 {
-	if (ft_treesearch(options, 't') == 1)
+	if (ft_treesearch(option, 't') == 1)
 	{
-		return ft_treesearch(options, 'l') == 1
-		? ft_filesTI_SPEC(argv, ret, node)
-		: ft_filesTI(argv, ret, node);
+		return (ft_treesearch(option, 'l') == 1)
+		? ft_files_tispec(argv, ret, node)
+		: ft_files_ti(argv, ret, node);
 	}
 	else
 	{
-		return ft_treesearch(options, 'l') == 1
-		? ft_filesAS_SPEC(argv, ret, node)
-		: ft_filesAS(argv, ret, node);
+		return (ft_treesearch(option, 'l') == 1)
+		? ft_files_asspec(argv, ret, node)
+		: ft_files_as(argv, ret, node);
 	}
 }

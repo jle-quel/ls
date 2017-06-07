@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 21:57:04 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:01:51 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void 	ft_read1(t_tree *options, char *directory)
 		if (lstat(var.path, &buf) == 0)
 		{
 			node == NULL
-			? node = ft_treeinsertTI(node, var, SEC, NSEC)
-			: ft_treeinsertTI(node, var, SEC, NSEC);
+			? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+			: ft_treeinsert_ti(node, var, SEC, NSEC);
 			blocks += buf.st_blocks;
 		}
 	}
@@ -59,8 +59,8 @@ void 	ft_read2(t_tree *options, char *directory)
 		if (lstat(var.path, &buf) == 0 && *sd->d_name != '.')
 		{
 			node == NULL
-			? node = ft_treeinsertTI(node, var, SEC, NSEC)
-			: ft_treeinsertTI(node, var, SEC, NSEC);
+			? node = ft_treeinsert_ti(node, var, SEC, NSEC)
+			: ft_treeinsert_ti(node, var, SEC, NSEC);
 			blocks += buf.st_blocks;
 		}
 	}
@@ -88,8 +88,8 @@ void 	ft_read3(t_tree *options, char *directory)
 		if (lstat(var.path, &buf) == 0)
 		{
 			node == NULL
-			? node = ft_treeinsertAS(node, var, SEC, NSEC)
-			: ft_treeinsertAS(node, var, SEC, NSEC);
+			? node = ft_treeinsert_as(node, var, SEC, NSEC)
+			: ft_treeinsert_as(node, var, SEC, NSEC);
 			blocks += buf.st_blocks;
 		}
 	}
@@ -117,8 +117,8 @@ void 	ft_read4(t_tree *options, char *directory)
 		if (lstat(var.path, &buf) == 0 && *sd->d_name != '.')
 		{
 			node == NULL
-			? node = ft_treeinsertAS(node, var, SEC, NSEC)
-			: ft_treeinsertAS(node, var, SEC, NSEC);
+			? node = ft_treeinsert_as(node, var, SEC, NSEC)
+			: ft_treeinsert_as(node, var, SEC, NSEC);
 			blocks += buf.st_blocks;
 		}
 	}
