@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/05 12:09:24 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 13:26:26 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int		ft_treesearch(t_tree *options, char c)
 			return (1);
 		index++;
 	}
-	ft_treesearch(options->right, c);
-	return (0);
+	return (ft_treesearch(options->right, c));
 }
 
 int		ft_lstsearch(t_list *options, char c)

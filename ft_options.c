@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 16:55:14 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/07 13:04:12 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ t_tree				*ft_options(char **argv, t_tree *node)
 	while (argv[index] && argv[0][index] == '-' && argv[0][1] != '-')
 	{
 		ft_parsing(argv[index] + 1);
-		var.name = ft_strdup(argv[index]);
-		var.path = NULL;
-		// ft_info(&var, argv[index], NULL);
+		ft_info(&var, argv[index], NULL);
 		node == NULL
 		? node = ft_treeinsertTI(node, var, 0, 0)
 		: ft_treeinsertTI(node, var, 0, 0);

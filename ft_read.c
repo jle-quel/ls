@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 20:58:46 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/06 21:57:04 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void 	ft_read1(t_tree *options, char *directory)
 	}
 	closedir(dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options)
+	? ft_handle_directions(node, options, blocks)
 	: ft_display(options, node, blocks);
 }
 
@@ -66,7 +66,7 @@ void 	ft_read2(t_tree *options, char *directory)
 	}
 	closedir(dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options)
+	? ft_handle_directions(node, options, blocks)
 	: ft_display(options, node, blocks);
 }
 
@@ -95,7 +95,7 @@ void 	ft_read3(t_tree *options, char *directory)
 	}
 	closedir(dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options)
+	? ft_handle_directions(node, options, blocks)
 	: ft_display(options, node, blocks);
 }
 
@@ -124,7 +124,7 @@ void 	ft_read4(t_tree *options, char *directory)
 	}
 	closedir(dirp);
 	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options)
+	? ft_handle_directions(node, options, blocks)
 	: ft_display(options, node, blocks);
 }
 

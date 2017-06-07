@@ -6,11 +6,18 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:00:10 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/06 20:59:27 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/06 21:57:19 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*ft_check(char *str)
+{
+	if (ft_strcmp(str, ".") == 0 || ft_strcmp(str, "..") == 0)
+		return ("EL DIABLO");
+	return (NULL);
+}
 
 void	ft_recursive1(t_tree *node, t_tree *options, int flag)
 {
@@ -36,7 +43,7 @@ void	ft_recursive2(t_tree *node, t_tree *options, int flag)
 	CHK_CV(node);
 	ft_recursive2(node->left, options, flag);
 	lstat(node->path, &buf);
-	if (!S_ISLNK(buf.st_mode) && S_ISDIR(buf.st_mode))
+	if (!S_ISLNK(buf.st_mode) && S_ISDIR(buf.st_mode) && !ft_check(node->name))
 	{
 		ft_putendl("");
 		ft_putstr(node->path);
@@ -46,12 +53,9 @@ void	ft_recursive2(t_tree *node, t_tree *options, int flag)
 	ft_recursive2(node->right, options, flag);
 }
 
-void	ft_handle_directions(t_tree *node, t_tree *options)
+void	ft_handle_directions(t_tree *node, t_tree *options, blkcnt_t blocks)
 {
-	if (ft_treesearch(options, 'r') == 1)
-		ft_printIN(node, ft_treesearch(options, 'l'));
-	else
-		ft_printOR(node, ft_treesearch(options, 'l'));
+	ft_display(options, node, blocks);
 	if (ft_treesearch(options, 'r') == 1)
 		ft_recursive1(node, options, ft_treesearch(options, 'l'));
 	else
