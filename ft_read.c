@@ -6,13 +6,13 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 15:20:03 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/08 09:59:51 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	ft_read1(t_tree *options, char *directory)
+static void		ft_read1(t_tree *options, char *directory)
 {
 	t_tree			*node;
 	t_info			var;
@@ -22,7 +22,7 @@ void 	ft_read1(t_tree *options, char *directory)
 
 	node = NULL;
 	norm.blocks = 0;
-	CHK_DIR((norm.dirp = opendir(directory)))
+	CHK_DIR((norm.dirp = opendir(directory)));
 	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
@@ -40,7 +40,7 @@ void 	ft_read1(t_tree *options, char *directory)
 	: ft_display(options, node, norm.blocks);
 }
 
-void 	ft_read2(t_tree *options, char *directory)
+static void		ft_read2(t_tree *options, char *directory)
 {
 	t_tree			*node;
 	t_info			var;
@@ -50,7 +50,7 @@ void 	ft_read2(t_tree *options, char *directory)
 
 	node = NULL;
 	norm.blocks = 0;
-	CHK_DIR((norm.dirp = opendir(directory)))
+	CHK_DIR((norm.dirp = opendir(directory)));
 	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
@@ -68,7 +68,7 @@ void 	ft_read2(t_tree *options, char *directory)
 	: ft_display(options, node, norm.blocks);
 }
 
-void 	ft_read3(t_tree *options, char *directory)
+static void		ft_read3(t_tree *options, char *directory)
 {
 	t_tree			*node;
 	t_info			var;
@@ -78,7 +78,7 @@ void 	ft_read3(t_tree *options, char *directory)
 
 	node = NULL;
 	norm.blocks = 0;
-	CHK_DIR((norm.dirp = opendir(directory)))
+	CHK_DIR((norm.dirp = opendir(directory)));
 	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
@@ -96,7 +96,7 @@ void 	ft_read3(t_tree *options, char *directory)
 	: ft_display(options, node, norm.blocks);
 }
 
-void 	ft_read4(t_tree *options, char *directory)
+static void		ft_read4(t_tree *options, char *directory)
 {
 	t_tree			*node;
 	t_info			var;
@@ -106,7 +106,7 @@ void 	ft_read4(t_tree *options, char *directory)
 
 	node = NULL;
 	norm.blocks = 0;
-	CHK_DIR((norm.dirp = opendir(directory)))
+	CHK_DIR((norm.dirp = opendir(directory)));
 	while ((sd = readdir(norm.dirp)))
 	{
 		ft_info(&var, sd->d_name, directory);
@@ -124,7 +124,7 @@ void 	ft_read4(t_tree *options, char *directory)
 	: ft_display(options, node, norm.blocks);
 }
 
-void	ft_read(t_tree *options, char *directory)
+void			ft_read(t_tree *options, char *directory)
 {
 	if (ft_treesearch(options, 't') == 1)
 	{

@@ -6,11 +6,20 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 15:25:59 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/08 10:02:46 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void			ft_printtime(char *str)
+{
+	size_t	index;
+
+	index = 4;
+	while (index < 16)
+		ft_putchar(str[index++]);
+}
 
 void			ft_error(t_ret *ret, char *str)
 {
