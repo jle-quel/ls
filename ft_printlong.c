@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 18:29:48 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/08 10:03:58 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/09 12:48:53 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,10 @@ static void		ft_print_name(char *str, char *path, mode_t nb)
 		ft_putendl(str);
 }
 
-static void		ft_printinfo(struct stat buf, struct passwd *id,
-				struct group *gid)
+static void		ft_printinfo(char *str, char *path, struct stat buf)
 {
 	ft_putstr("\t");
 	ft_putnbr(buf.st_nlink);
-	ft_putstr("\t");
-	ft_putstr(id->pw_name);
-	ft_putstr("\t");
-	ft_putstr(gid->gr_name);
 	ft_putstr("\t");
 	if (S_ISCHR(buf.st_mode) || S_ISBLK(buf.st_mode))
 	{
@@ -95,8 +90,9 @@ static void		ft_printinfo(struct stat buf, struct passwd *id,
 	else
 		ft_putnbr(buf.st_size);
 	ft_putstr("\t");
-	ft_printtime(ctime(&buf.st_mtime));
+	ft_printtime(ctime(&buf.st_mtimespec.tv_sec));
 	ft_putstr("\t");
+	ft_print_name(str, path, buf.st_mode);
 }
 
 void			ft_printlong(char *str, char *path)
@@ -105,15 +101,25 @@ void			ft_printlong(char *str, char *path)
 	struct passwd	*id;
 	struct group	*gid;
 
-	if (lstat(path, &buf) == -1 && lstat(str, &buf) == -1)
+	if (lstat(path, &buf) == 0 || lstat(str, &buf) == 0)
+	{
+		ft_inspect_rights(buf.st_mode);
+		ft_putstr("\t");
+		if (!(id = getpwuid(buf.st_uid)))
+			ft_putnbr(buf.st_uid);
+		else
+			ft_putstr(id->pw_name);
+		ft_putstr("\t");
+		if (!(gid = getgrgid(buf.st_gid)))
+			ft_putnbr(buf.st_gid);
+		else
+			ft_putstr(gid->gr_name);
+		ft_printinfo(str, path, buf);
+	}
+	else
 	{
 		ft_putstr("./ft_ls: ");
 		perror(str);
 		return ;
 	}
-	id = getpwuid(buf.st_uid);
-	gid = getgrgid(buf.st_gid);
-	ft_inspect_rights(buf.st_mode);
-	ft_printinfo(buf, id, gid);
-	ft_print_name(str, path, buf.st_mode);
 }

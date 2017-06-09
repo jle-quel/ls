@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/08 10:04:26 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/09 11:48:44 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 # define SEC buf.st_mtimespec.tv_sec
 # define NSEC buf.st_mtimespec.tv_nsec
-# define CHK_DIR(a) \
-if (!a) { perror(ft_strjoin("./ft_ls: ", directory)); return ; }
+# define NORM perror(ft_strjoin("./ft_ls: ", directory))
+# define CHK_DIR(a) if (!a) { NORM; return ; }
 
 typedef struct		s_tree
 {
@@ -106,8 +106,7 @@ void				ft_display(t_tree *options, t_tree *node, blkcnt_t blocks);
 ** READING
 */
 void				ft_read(t_tree *options, char *directory);
-void				ft_handle_directions(t_tree *node, t_tree *options,
-					blkcnt_t blocks);
+void				ft_handle_directions(t_tree *node, t_tree *options);
 
 /*
 ** LAUNCHER

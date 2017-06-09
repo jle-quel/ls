@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:17:32 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 15:08:56 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/09 11:18:21 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*ft_path(char *directory, char *name)
 
 	path = ft_memalloc(ft_strlen(directory) + 1 + ft_strlen(name) + 1);
 	ft_strcpy(path, directory);
-	ft_strcat(path, "/");
+	if (ft_strcmp(directory, "/") != 0)
+		ft_strcat(path, "/");
 	ft_strcat(path, name);
 	return (path);
 }

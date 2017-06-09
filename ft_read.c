@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:14:40 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/08 09:59:51 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/09 11:48:36 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void		ft_read1(t_tree *options, char *directory)
 		}
 	}
 	closedir(norm.dirp);
-	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, norm.blocks)
-	: ft_display(options, node, norm.blocks);
+	ft_display(options, node, norm.blocks);
+	if (ft_treesearch(options, 'R') == 1)
+		ft_handle_directions(node, options);
 }
 
 static void		ft_read2(t_tree *options, char *directory)
@@ -63,9 +63,9 @@ static void		ft_read2(t_tree *options, char *directory)
 		}
 	}
 	closedir(norm.dirp);
-	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, norm.blocks)
-	: ft_display(options, node, norm.blocks);
+	ft_display(options, node, norm.blocks);
+	if (ft_treesearch(options, 'R') == 1)
+		ft_handle_directions(node, options);
 }
 
 static void		ft_read3(t_tree *options, char *directory)
@@ -91,9 +91,9 @@ static void		ft_read3(t_tree *options, char *directory)
 		}
 	}
 	closedir(norm.dirp);
-	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, norm.blocks)
-	: ft_display(options, node, norm.blocks);
+	ft_display(options, node, norm.blocks);
+	if (ft_treesearch(options, 'R') == 1)
+		ft_handle_directions(node, options);
 }
 
 static void		ft_read4(t_tree *options, char *directory)
@@ -119,9 +119,9 @@ static void		ft_read4(t_tree *options, char *directory)
 		}
 	}
 	closedir(norm.dirp);
-	ft_treesearch(options, 'R') == 1
-	? ft_handle_directions(node, options, norm.blocks)
-	: ft_display(options, node, norm.blocks);
+	ft_display(options, node, norm.blocks);
+	if (ft_treesearch(options, 'R') == 1)
+		ft_handle_directions(node, options);
 }
 
 void			ft_read(t_tree *options, char *directory)

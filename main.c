@@ -6,19 +6,20 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:15 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/07 14:19:31 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/09 12:49:37 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_directional(t_tree *options, t_tree *files, t_tree *directories)
+void	ft_directional(t_tree *options, t_tree *files, t_tree *directories,
+		t_ret ret)
 {
 	int		display;
 	t_info	var;
 
 	display = 0;
-	if (options && !directories && !files)
+	if (options && !directories && !files && ret.error == 0)
 	{
 		var.name = ft_strdup(".");
 		var.path = ft_strdup(".");
@@ -50,6 +51,6 @@ int		main(int argc, char **argv)
 	if (files)
 		ft_printfiles(files, options, directories);
 	ft_treeclr(node);
-	ft_directional(options, files, directories);
+	ft_directional(options, files, directories, ret);
 	return (ret.error);
 }
