@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/10 11:43:03 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/10 14:25:08 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,20 @@ t_tree				*ft_treeinsert_ti(t_tree *node, t_info var, time_t sec,
 					long nsec);
 
 /*
-** FT_OPTIONS.C
+** FT_TOOLS3.C
 */
-void				ft_printtime(char *str);
+void				ft_printowner(struct stat buf, t_tree *options);
+void				ft_printtime(time_t ti);
 void				ft_error(t_ret *ret, char *str);
 
 /*
 ** PRINTING
 */
-void				ft_print_or(t_tree *files, int flag);
-void				ft_print_in(t_tree *files, int flag);
+void				ft_print_in(t_tree *files, int flag, t_tree *options);
+void				ft_print_or(t_tree *files, int flag, t_tree *options);
 void				ft_printfiles(t_tree *files, t_tree *options,
 					t_tree *directories);
-void				ft_printlong(char *str, char *path);
+void				ft_printlong(char *str, char *path, t_tree *options);
 void				ft_display(t_tree *options, t_tree *node, blkcnt_t blocks);
 
 /*

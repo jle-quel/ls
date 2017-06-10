@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:20:05 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/10 11:47:28 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/10 13:49:41 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ t_tree		*ft_treeinsert_ti(t_tree *node, t_info var, time_t sec, long nsec)
 		return (ft_treenew(var, sec, nsec));
 	else if (sec < node->sec)
 		node->right = ft_treeinsert_ti(node->right, var, sec, nsec);
-	else if (sec == node->sec && nsec == node->nsec && ft_strcmp(var.name, node->name) > 0)
+	else if (sec == node->sec && nsec == node->nsec && ft_strcmp(var.name,
+																node->name) > 0)
 		node->right = ft_treeinsert_ti(node->right, var, sec, nsec);
 	else
-		node->left = ft_treeinsert_ti(node->left , var, sec, nsec);
+		node->left = ft_treeinsert_ti(node->left, var, sec, nsec);
 	return (node);
 }

@@ -6,34 +6,18 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 12:04:44 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/10 11:16:50 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/10 14:20:39 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void			ft_printtime(char *str)
-{
-	size_t	index;
-
-	index = 4;
-	while (index < 16)
-		ft_putchar(str[index++]);
-}
-
-void			ft_error(t_ret *ret, char *str)
-{
-	ft_putstr("./ft_ls: ");
-	perror(str);
-	ret->error = errno;
-}
 
 static void		ft_print_error(char c)
 {
 	ft_putstr("./ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putendl("usage: ./ft_ls [-Rralt] [file ...]");
+	ft_putendl("usage: ./ft_ls [-Rraltno] [file ...]");
 }
 
 static void		ft_parsing(char *str)
@@ -44,7 +28,8 @@ static void		ft_parsing(char *str)
 	while (str[index])
 	{
 		if (str[index] != 'R' && str[index] != 'r' && str[index] != 'a' &&
-			str[index] != 'l' && str[index] != 't')
+			str[index] != 'l' && str[index] != 't' && str[index] != 'n' &&
+			str[index] != 'o')
 		{
 			ft_print_error(str[index]);
 			exit(1);

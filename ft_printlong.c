@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 18:29:48 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/10 12:08:13 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/10 14:37:44 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ static void		ft_print_name(char *str, char *path, mode_t nb)
 static void		ft_printinfo(char *str, char *path, struct stat buf)
 {
 	ft_putstr("\t");
-	ft_putnbr(buf.st_nlink);
-	ft_putstr("\t");
 	if (S_ISCHR(buf.st_mode) || S_ISBLK(buf.st_mode))
 	{
 		ft_putnbr(major(buf.st_rdev));
@@ -90,30 +88,22 @@ static void		ft_printinfo(char *str, char *path, struct stat buf)
 	else
 		ft_putnbr(buf.st_size);
 	ft_putstr("\t");
-	ft_printtime(ctime(&buf.st_mtimespec.tv_sec));
+	ft_printtime(buf.st_mtimespec.tv_sec);
 	ft_putstr("\t");
 	ft_print_name(str, path, buf.st_mode);
 }
 
-void			ft_printlong(char *str, char *path)
+void			ft_printlong(char *str, char *path, t_tree *options)
 {
 	struct stat		buf;
-	struct passwd	*id;
-	struct group	*gid;
 
 	if (lstat(path, &buf) == 0 || lstat(str, &buf) == 0)
 	{
 		ft_inspect_rights(buf.st_mode);
 		ft_putstr("\t");
-		if (!(id = getpwuid(buf.st_uid)))
-			ft_putnbr(buf.st_uid);
-		else
-			ft_putstr(id->pw_name);
+		ft_putnbr(buf.st_nlink);
 		ft_putstr("\t");
-		if (!(gid = getgrgid(buf.st_gid)))
-			ft_putnbr(buf.st_gid);
-		else
-			ft_putstr(gid->gr_name);
+		ft_printowner(buf, options);
 		ft_printinfo(str, path, buf);
 	}
 	else
