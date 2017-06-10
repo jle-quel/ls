@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 10:57:29 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/09 11:48:44 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/06/10 11:43:03 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <errno.h>
 # include <sys/xattr.h>
 
-# define SEC buf.st_mtimespec.tv_sec
+# define SEC buf.st_mtime
 # define NSEC buf.st_mtimespec.tv_nsec
 # define NORM perror(ft_strjoin("./ft_ls: ", directory))
 # define CHK_DIR(a) if (!a) { NORM; return ; }
